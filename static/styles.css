@@ -1,0 +1,82 @@
+@font-face {
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins-Regular.ttf');
+}
+@font-face {
+	font-family: 'Montserrat-SemiBold';
+	src: url('./fonts/Montserrat-SemiBold.ttf');
+}
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./fonts/Montserrat-Regular.ttf');
+}
+
+:root {
+	--body: 8px 'Poppins', sans-serif;
+	--medium: 12px 'Poppins', sans-serif;
+	--big: 18px 'Poppins', sans-serif;
+	--bigger: 600 20px 'Montserrat';
+	--bigger-sb: 20px 'Montserrat-SemiBold';
+
+	--neutral-1: #231f20;
+	--neutral-2: #3b3436;
+	--neutral-3: #4f4648;
+	--neutral-4: #716c6d;
+	--neutral-5: #afa5a7;
+	--neutral-6: #d5ced0;
+	--neutral-7: #e7e2e3;
+
+	--blue-1: #117982;
+	--blue-2: #1d8790;
+	--blue-3: #4a959c;
+	--blue-4: #62acb2;
+	--blue-5: #7ebdc2;
+	--blue-6: #8cccd0;
+	--blue-7: #b4ecf0;
+
+	--red-1: #751a0a;
+	--red-2: #842616;
+	--red-3: #a0230e;
+	--red-4: #bb4430;
+	--red-5: #c44e39;
+	--red-6: #d47666;
+	--red-7: #e18575;
+
+	--green-1: #596b05;
+	--green-2: #698000;
+	--green-3: #748b0b;
+	--green-4: #839c19;
+	--green-5: #9fc109;
+	--green-6: #c5d573;
+	--green-7: #d6e690;
+
+	--yellow-1: #d37010;
+	--yellow-2: #d37f16;
+	--yellow-3: #e49714;
+	--yellow-4: #efb415;
+	--yellow-5: #f5c73c;
+	--yellow-6: #f9da7d;
+	--yellow-7: #f3de9e;
+
+	--gradient-blue: linear-gradient(
+		to bottom,
+		rgba(126, 189, 194, 1) 0%,
+		rgba(17, 121, 130, 1) 100%
+	);
+	--gradient-red: linear-gradient(to bottom, rgba(160, 35, 14, 1) 0%, rgba(225, 133, 117, 1) 100%);
+	--gradient-yellow: linear-gradient(
+		to bottom,
+		rgba(249, 218, 125, 1) 0%,
+		rgba(211, 127, 22, 1) 100%
+	);
+}
+
+@media screen and (min-width: 700px) {
+	:root {
+		--body: 16px 'Poppins', sans-serif;
+		--medium: 24px 'Poppins', sans-serif;
+		--big: 36px 'Poppins', sans-serif;
+		--bigger: 600 40px 'Montserrat';
+		--bigger-sb: 40px 'Montserrat-SemiBold';
+	}
+}
