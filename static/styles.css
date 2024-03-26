@@ -71,7 +71,17 @@
 	);
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 500px) {
+	:root {
+		--body: 12px 'Poppins', sans-serif;
+		--medium: 16px 'Poppins', sans-serif;
+		--big: 24px 'Poppins', sans-serif;
+		--bigger: 600 30px 'Montserrat';
+		--bigger-sb: 30px 'Montserrat-SemiBold';
+	}
+}
+
+@media screen and (min-width: 1200px) {
 	:root {
 		--body: 16px 'Poppins', sans-serif;
 		--medium: 24px 'Poppins', sans-serif;

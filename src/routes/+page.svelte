@@ -58,7 +58,6 @@
 	const slide = function (e) {
 		const tgt = e.target.closest('.btn');
 		if (!tgt) return;
-		console.log(tgt, testimonialsEl, testimonialsElArr);
 		if (tgt.classList.contains('btn-left') && sliderIndex > 0) sliderIndex--;
 		if (tgt.classList.contains('btn-right') && sliderIndex < testimonials.length - 1) sliderIndex++;
 		testimonialsElArr.forEach((t, i) => {
@@ -73,7 +72,10 @@
 <svelte:window bind:innerWidth={vw} />
 <svelte:head><link rel="stylesheet" href="{base}/styles.css" /></svelte:head>
 <header>
-	<Logo width={vw >= 700 ? 120 : 60} height={vw >= 700 ? 60 : 30}></Logo>
+	<Logo
+		width={vw >= 1200 ? 120 : vw >= 500 ? 80 : 60}
+		height={vw >= 1200 ? 60 : vw >= 500 ? 80 : 30}
+	></Logo>
 	<ul>
 		<li>
 			<a
@@ -98,7 +100,10 @@
 </header>
 <main>
 	<div class="hero">
-		<Hero CSSclass="hero-svg" width={vw >= 700 ? 510 : 220} height={vw >= 700 ? 350 : 172}
+		<Hero
+			CSSclass="hero-svg"
+			width={vw >= 1200 ? 510 : vw >= 500 ? 360 : 220}
+			height={vw >= 1200 ? 350 : vw >= 500 ? 240 : 172}
 		></Hero><span class="hero-text">Smooth payments<br />No hidden fees</span>
 		<CTA
 			CSSClass="hero-cta"
@@ -107,8 +112,8 @@
 			--border-radius="999px"
 			--border-width="2px"
 			--background-color="var(--neutral-7)"
-			--width={vw >= 700 ? '480px' : '240px'}
-			--height={vw >= 700 ? '96px' : '48px'}
+			--width={vw >= 1200 ? '480px' : vw >= 500 ? '360px' : '240px'}
+			--height={vw >= 1200 ? '96px' : vw >= 500 ? '64px' : '48px'}
 			--color="var(--neutral-1)"
 			--font="var(--bigger)">Start Now</CTA
 		>
@@ -160,9 +165,7 @@
 	<div class="download" bind:this={downloadPage}>
 		<h1 class="download_heading">Already have an account?<br />Download the app</h1>
 		<div class="download_links">
-			<!-- svelte-ignore a11y-invalid-attribute -->
 			<a href="/"><img src="{base}/PlayStore.png" alt="Play Store" /></a>
-			<!-- svelte-ignore a11y-invalid-attribute -->
 			<a href="/"><img src="{base}/AppStore.png" alt="Play Store" /></a>
 		</div>
 	</div>
@@ -180,7 +183,7 @@
 </footer>
 
 <!-- 
-	TODO responsive  -->
+	TODO responsive sign up, additional pages & popups   -->
 
 <style>
 	:global(body) {
@@ -224,19 +227,23 @@
 	}
 	.hero {
 		background: var(--gradient-blue);
-		position: relative;
+		display: flex;
+		justify-content: center;
 		height: 240px;
+		position: relative;
 	}
 	:global(.hero-svg) {
-		margin: 32px 8px;
+		align-self: center;
+		margin-right: -10%;
+		margin-left: 5%;
 	}
 	.hero-text {
-		position: absolute;
 		font: var(--bigger-sb);
 		color: var(--neutral-7);
 		text-align: right;
-		right: 10px;
-		top: 32px;
+		align-self: flex-start;
+		margin-top: 5%;
+		margin-right: 10%;
 	}
 	:global(.hero-cta) {
 		position: absolute;
@@ -250,6 +257,7 @@
 		padding: 40px 20px;
 		display: flex;
 		flex-direction: column;
+		box-sizing: border-box;
 	}
 	.features_heading {
 		font: var(--bigger);
@@ -336,6 +344,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
+		box-sizing: border-box;
 	}
 	.testimonials_heading {
 		font: var(--bigger);
@@ -436,235 +445,194 @@
 	}
 	.copy_link,
 	.copy_link:visited {
+		text-decoration: underline;
 		font: var(--body);
 		color: var(--neutral-3);
 		display: inline;
 	}
-	@media screen and (min-width: 700px) {
-		:global(body) {
-			margin: 0;
-			background-color: var(--neutral-7);
+
+	@media screen and (min-width: 500px) {
+		header {
+			padding: 35px 16px;
 		}
-		header,
 		ul {
-			display: flex;
-			justify-content: space-between;
+			height: 45px;
+			gap: 12px;
+		}
+		.signup-div {
+			padding: 3px;
+			border-radius: 75px;
+		}
+		.signup {
+			border-radius: 75px;
+			padding: 6px 12px;
+		}
+		.hero {
+			height: 360px;
+		}
+		:global(.hero-cta) {
+			bottom: -36px;
+			box-shadow: 0 6px 6px 6px rgba(0, 0, 0, 0.2);
+		}
+		.features {
+			height: 600px;
+			padding: 60px 30px;
 			align-items: center;
 		}
+		.tabs_container {
+			width: 80%;
+		}
+		.tabs {
+			margin: 0 48px;
+			margin-bottom: -30px;
+		}
+		.tab,
+		.tab_active {
+			padding: 6px;
+			width: 60px;
+		}
+		.tab_content_active {
+			border-radius: 30px;
+			padding: 6px;
+		}
+		.tab_content-text {
+			border-radius: 24px;
+			padding: 48px 24px 24px 36px;
+			height: 100%;
+		}
+		.tab_content-body {
+			margin-top: 16px;
+			margin-left: 24px;
+		}
+		.testimonials {
+			height: 600px;
+			padding: 60px 30px;
+			gap: 48px;
+			align-items: center;
+		}
+		.testimonials_container {
+			width: 80%;
+		}
+		.btn-left img,
+		.btn-right img {
+			width: 16px;
+			height: 36px;
+		}
+		.testimonial_photo {
+			border: 6px solid var(--neutral-6);
+			width: 96px;
+		}
+		.testimonial_name {
+			margin: 24px 0px;
+		}
+		.testimonial_text {
+			margin: 0px 24px;
+		}
+		.download {
+			height: 360px;
+			padding: 36px 16px;
+		}
+		.download_links {
+			width: 360px;
+			gap: 60px;
+		}
+		footer {
+			padding: 16px 48px;
+		}
+		.footer_hr {
+			border: 1px solid var(--neutral-5);
+			margin: 12px -16px;
+		}
+	}
+	@media screen and (min-width: 1200px) {
 		header {
-			justify-content: space-between;
 			padding: 50px 24px;
 		}
 		ul {
 			height: 60px;
-			list-style: none;
-			padding: 0;
-			margin: 0;
 			gap: 16px;
 		}
-		a {
-			display: block;
-			text-decoration: none;
-			font: var(--medium);
-			color: var(--neutral-1);
-		}
 		.signup-div {
-			box-sizing: border-box;
-			background: var(--gradient-blue);
 			padding: 4px;
 			border-radius: 100px;
 		}
 		.signup {
-			box-sizing: border-box;
-			background-color: var(--blue-6);
 			border-radius: 100px;
 			padding: 8px 16px;
 		}
 		.hero {
-			background: var(--gradient-blue);
-			position: relative;
 			height: 480px;
 		}
-		:global(.hero-svg) {
-			margin: 64px 400px;
-		}
-		.hero-text {
-			position: absolute;
-			font: var(--bigger-sb);
-			color: var(--neutral-7);
-			text-align: right;
-			right: 500px;
-			top: 64px;
-		}
 		:global(.hero-cta) {
-			position: absolute;
 			bottom: -48px;
-			left: 50%;
-			transform: translateX(-50%);
 			box-shadow: 0 8px 8px 8px rgba(0, 0, 0, 0.2);
 		}
 		.features {
 			height: 800px;
 			padding: 80px 40px;
-			display: flex;
-			flex-direction: column;
 			align-items: center;
 		}
-		.features_heading {
-			font: var(--bigger);
-			text-align: center;
-		}
 		.tabs_container {
-			display: flex;
-			flex-direction: column;
-			flex: 1;
 			width: 50%;
 		}
 		.tabs {
-			display: flex;
-			justify-content: space-between;
 			margin: 0 64px;
 			margin-bottom: -40px;
-			z-index: 1;
-		}
-		.tabs img {
-			display: block;
 		}
 		.tab,
 		.tab_active {
-			border-radius: 50%;
 			padding: 8px;
 			width: 80px;
-			box-sizing: border-box;
-		}
-		.tab img {
-			background-color: var(--neutral-7);
-		}
-		.tab img,
-		.tab_active img {
-			width: 100%;
-			height: 100%;
-			box-sizing: border-box;
-			border-radius: 50%;
-			padding: 20%;
-		}
-		.tab img {
-			background-color: var(--neutral-7);
-		}
-		.tab-1,
-		.tab_content-1 {
-			background: var(--gradient-blue);
-		}
-		.tab-2,
-		.tab_content-2 {
-			background: var(--gradient-red);
-		}
-		.tab-3,
-		.tab_content-3 {
-			background: var(--gradient-yellow);
-		}
-		.tab_content {
-			display: none;
 		}
 		.tab_content_active {
 			border-radius: 40px;
 			padding: 8px;
-			flex: 1;
 		}
 		.tab_content-text {
-			box-sizing: border-box;
 			border-radius: 32px;
-			background-color: var(--neutral-7);
 			padding: 64px 32px 32px 48px;
 			height: 100%;
 		}
-		.tab_content-heading,
 		.tab_content-body {
-			margin: 0;
-		}
-		.tab_content-heading {
-			font: var(--big);
-		}
-		.tab_content-body {
-			font: var(--medium);
 			margin-top: 32px;
 			margin-left: 32px;
 		}
 		.testimonials {
 			height: 800px;
 			padding: 80px 40px;
-			display: flex;
-			flex-direction: column;
 			gap: 64px;
-		}
-		.testimonials_heading {
-			font: var(--bigger);
-			text-align: center;
+			align-items: center;
 		}
 		.testimonials_container {
-			display: flex;
 			width: 50%;
-			align-self: center;
-		}
-		.btn-left,
-		.btn-right {
-			height: fit-content;
-			border: none;
-			background: none;
-			align-self: center;
 		}
 		.btn-left img,
 		.btn-right img {
 			width: 24px;
 			height: 48px;
 		}
-		.testimonials_slides {
-			overflow: hidden;
-			display: flex;
-		}
-		.testimonial {
-			flex: 0 0 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-			transition: transform 0.25s ease-in-out;
-		}
 		.testimonial_photo {
 			border: 8px solid var(--neutral-6);
-			border-radius: 50%;
 			width: 128px;
 		}
 		.testimonial_name {
-			font: var(--big);
 			margin: 32px 0px;
 		}
 		.testimonial_text {
-			font: var(--medium);
 			margin: 0px 32px;
 		}
 		.download {
-			background: var(--gradient-blue);
 			height: 480px;
-			display: flex;
-			flex-direction: column;
 			padding: 48px 24px;
-			box-sizing: border-box;
-			justify-content: space-between;
 		}
 		.download_links {
-			display: flex;
 			width: 480px;
-			align-self: center;
 			gap: 80px;
 		}
 		footer {
 			padding: 24px 64px;
-			display: flex;
-			flex-direction: column;
 		}
 		.footer_hr {
-			color: var(--neutral-4);
 			border: 2px solid var(--neutral-5);
 			margin: 16px -24px;
 		}
